@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -17,34 +18,25 @@
 /**
  * Local Course extender main view.
  *
- * @package     local_course_extender
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-require_once(__DIR__ . '/../../config.php');
-require_once($CFG->libdir . '/adminlib.php');
-require_once('lib.php');
-require_once('edit_form.php');
-
+require_once __DIR__.'/../../config.php';
+require_once $CFG->libdir.'/adminlib.php';
+require_once 'lib.php';
+require_once 'edit_form.php';
 
 global $CFG, $DB, $PAGE;
 $courseID = required_param('id', PARAM_INT);
 $course = $DB->get_record('course', ['id' => $courseID], '*', MUST_EXIST);
 require_login($course);
 
-
 $currentparams = ['id' => $courseID];
 $url = new moodle_url('/local/course_extender/index.php', $currentparams);
 $PAGE->set_url($url);
-if (!has_capability('moodle/backup:backupcourse',context_course::instance($PAGE->course->id))) {
-    $url_back=new moodle_url('/my');
-    redirect($url_back, 'sie haben nicht die passenden Berechtigungen!',null, \core\output\notification::NOTIFY_ERROR);
+if (!has_capability('moodle/backup:backupcourse', context_course::instance($PAGE->course->id))) {
+    $url_back = new moodle_url('/my');
+    redirect($url_back, 'sie haben nicht die passenden Berechtigungen!', null, \core\output\notification::NOTIFY_ERROR);
 }
-
-
-
-
-
 
 // Set page context.
 $PAGE->set_context(context_system::instance());
@@ -52,21 +44,19 @@ $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('standard');
 // Set page layout.
 
-$PAGE->set_title($SITE->fullname . ': ' . "course extender");
+$PAGE->set_title($SITE->fullname.': '.'course extender');
 $PAGE->set_heading($SITE->fullname);
 // $PAGE->set_url(new moodle_url('/local/dexmod/index.php'));
 $PAGE->navbar->ignore_active(true);
 // $PAGE->navbar->add("Dexpmod", new moodle_url('/local/dexpmod/index.php'));
-$PAGE->navbar->add("course_extender", new moodle_url($url));
+$PAGE->navbar->add('course_extender', new moodle_url($url));
 $PAGE->set_pagelayout('admin');
 
-$mform = new course_extender_form( null, array('courseid'=>$courseID));
+$mform = new course_extender_form(null, ['courseid' => $courseID]);
 //display the form
 
-
-
 // $mform->set_data((object)$currentparams);
-if($data = $mform->get_data()) {
+if ($data = $mform->get_data()) {
     course_extender_update($courseID, $data->keepcourse);
     redirect(new moodle_url('/local/course_extender/index.php', $currentparams));
 }
@@ -74,11 +64,8 @@ if($data = $mform->get_data()) {
 echo $OUTPUT->header();
 $mform->display();
 
-
-$backurl=new moodle_url('/course/view.php', array('id' => $courseID ));
+$backurl = new moodle_url('/course/view.php', ['id' => $courseID]);
 
 echo $OUTPUT->single_button($backurl, 'Zurück zum Kurs');
-
-
 
 echo $OUTPUT->footer();

@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
+/*
  * Version details.
  *
  * @package   local_course_extender
@@ -24,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022080200;      // The current module version (Date: YYYYMMDDXX).
-$plugin->requires  = 2021051708;      // Requires this Moodle version.
-$plugin->component = 'local_course_extender';// Full name of the plugin (used for diagnostics).
-$plugin->cron      = 0;
+$plugin->version = 2022081200;      // The current module version (Date: YYYYMMDDXX).
+$plugin->requires = 2021051708;      // Requires this Moodle version.
+$plugin->component = 'local_course_extender'; // Full name of the plugin (used for diagnostics).
+$plugin->cron = 0;
