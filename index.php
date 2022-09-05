@@ -31,9 +31,11 @@ $course = $DB->get_record('course', ['id' => $courseID], '*', MUST_EXIST);
 require_login($course);
 
 $currentparams = ['id' => $courseID];
+$course = $DB->get_record('course', ['id' => $courseID]);
+$coursecontext = context_course::instance($course->id);
 $url = new moodle_url('/local/course_extender/index.php', $currentparams);
 $PAGE->set_url($url);
-if (!has_capability('moodle/backup:backupcourse', context_course::instance($PAGE->course->id))) {
+if (!has_capability('local/course_extender:extendcourse',$coursecontext)) {
     $url_back = new moodle_url('/my');
     redirect($url_back, 'sie haben nicht die passenden Berechtigungen!', null, \core\output\notification::NOTIFY_ERROR);
 }

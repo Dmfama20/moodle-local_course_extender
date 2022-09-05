@@ -24,5 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
+$capabilities = array(// Whether or not the user can extend course life
+    'local/course_extender:extendcourse' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+    ),
 );

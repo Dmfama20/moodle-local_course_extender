@@ -23,6 +23,7 @@
  */
 
 $string['pluginname'] = 'Course extender';
+$string['course_extender:extendcourse'] = 'extend course';
 $string['keep_course'] = 'Keep course';
 $string['info'] = '<p><b> Current state:</b> <i>{$a->keepcourse}</i>.</p> ';
 

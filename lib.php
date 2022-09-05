@@ -34,7 +34,7 @@ function local_course_extender_extend_settings_navigation($settingsnav, $context
     }
 
     // Only let users with the appropriate capability see this settings item.
-    if (!has_capability('moodle/backup:backupcourse', context_course::instance($PAGE->course->id))) {
+    if (!has_capability('local/course_extender:extendcourse', context_course::instance($PAGE->course->id))) {
         return;
     }
 
