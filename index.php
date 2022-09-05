@@ -68,6 +68,6 @@ $mform->display();
 
 $backurl = new moodle_url('/course/view.php', ['id' => $courseID]);
 
-echo $OUTPUT->single_button($backurl, 'Zurück zum Kurs');
+echo $OUTPUT->single_button($backurl, 'Zurück zum Kurs','get');
 
 echo $OUTPUT->footer();
